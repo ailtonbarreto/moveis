@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
     <link rel="shortcut icon" href="vr-glasses.ico" type="image/x-icon">
+    <script src="menu.js" defer></script>
+    <link rel="stylesheet" href="menu.css">
+    <title>VR Móveis</title>
 
     <style>
         body {
@@ -14,6 +18,7 @@
             overflow: hidden;
             height: 100vh;
         }
+
 
         .controls-bottom {
             position: fixed;
@@ -102,26 +107,46 @@
 
 <body>
 
-    <div class="opcoes">
+    <span class="material-symbols-outlined open-menu" id="open_menu">menu</span>
+
+
+    <nav id="menu">
+
+        <span class="material-symbols-outlined" id="close_menu">close</span>
+
 
         <select id="modelSelect">
 
             <option value="">Selecione um modelo</option>
+
             <option value="./mobilia/cover_chair.glb">Cadeira 1</option>
+
             <option value="./mobilia/chair.glb">Cadeira Couro</option>
-            <!-- <option value="./mobilia/eames_chair.glb">Cadeira Branca</option> -->
+
             <option value="./mobilia/cama.glb">Cama</option>
-            <option value="./mobilia/mesa_de_centro.glb">Mesa De Centro</option>
+
+            <option value="./mobilia/mesa_de_centro.glb">Mesa De Centro 1</option>
+
+            <option value="./mobilia/mesa de centro.glb">Mesa De Centro 2</option>
+
+            <option value="./mobilia/aparador.glb">Aparador</option>
+
+
             <option value="./mobilia/poltrona_verde.glb">Poltrona Verde</option>
+
             <option value="./mobilia/poltrona_couro.glb">Poltrona De Couro</option>
-            <!-- <option value="./mobilia/sofa_branco.glb">Sofa Branco</option> -->
-            <option value="./mobilia/sofa_branco2.glb">Sofa Suede</option>
-            <!-- <option value="./mobilia/sofa.glb">Sofa</option> -->
+
+
             <option value="./mobilia/sofa_couro_preto.glb">Sofa de Couro Preto</option>
+
             <option value="./mobilia/geladeira.glb">Geladeira</option>
+
             <option value="./mobilia/maquina_de_lavar.glb">Máquina de Lavar</option>
+
         </select>
-    </div>
+
+
+    </nav>
 
 
     <!-- Rotação Y -->
@@ -298,12 +323,12 @@
 
                 const maxDim = Math.max(size.x, size.y, size.z);
 
-    
-                const desiredSize = 3; 
+
+                const desiredSize = 3;
 
                 const scaleFactor = desiredSize / maxDim;
 
-  
+
                 modelo.setAttribute("scale", {
                     x: scaleFactor,
                     y: scaleFactor,
@@ -324,7 +349,6 @@
             // opcional: resetar posição
             objeto.position.set(0, 1, -4);
         });
-
 
 
     </script>
