@@ -31,12 +31,6 @@
 
             <option value="./mobilia/chair.glb">Cadeira Couro</option>
 
-            <option value="./mobilia/mesa_de_centro.glb">Mesa De Centro 1</option>
-
-            <option value="./mobilia/mesa de centro.glb">Mesa De Centro 2</option>
-
-            <option value="./mobilia/aparador.glb">Aparador</option>
-
             <option value="./mobilia/poltrona_verde.glb">Poltrona Verde</option>
 
             <option value="./mobilia/poltrona_couro.glb">Poltrona De Couro</option>
@@ -44,6 +38,12 @@
             <option value="./mobilia/sofa_grey.glb">Sofa Grey</option>
 
             <option value="./mobilia/sofa_couro_preto.glb">Sofa de Couro Preto</option>
+
+            <option value="./mobilia/mesa_de_centro.glb">Mesa De Centro 1</option>
+
+            <option value="./mobilia/mesa de centro.glb">Mesa De Centro 2</option>
+
+            <option value="./mobilia/aparador.glb">Aparador</option>
 
             <option value="./mobilia/geladeira.glb">Geladeira</option>
 
@@ -111,6 +111,39 @@
         const objeto = document.querySelector("#objeto").object3D;
         const modelo = document.querySelector("#modelo");
 
+        modelo.addEventListener("model-loaded", () => {
+            // Resetar posição
+            objeto.position.set(0, 1, -4);
+
+            // Resetar rotação
+            objeto.rotation.set(
+                0,
+                THREE.Math.degToRad(-90),
+                0
+            );
+
+            // Resetar escala
+            modelo.setAttribute("scale", { x: 2, y: 2, z: 2 });
+
+            // Ajuste automático baseado no tamanho real do modelo
+            const obj = modelo.getObject3D("mesh");
+            if (!obj) return;
+
+            const box = new THREE.Box3().setFromObject(obj);
+            const size = box.getSize(new THREE.Vector3());
+            const maxDim = Math.max(size.x, size.y, size.z);
+
+            const desiredSize = 3;
+            const scaleFactor = desiredSize / maxDim;
+
+            modelo.setAttribute("scale", {
+                x: scaleFactor,
+                y: scaleFactor,
+                z: scaleFactor
+            });
+        });
+
+
         /* ZOOM */
         function getPinchDistance(e) {
             const dx = e.touches[0].clientX - e.touches[1].clientX;
@@ -165,11 +198,11 @@
 
         /* ROT Y */
         document.querySelector("#rotateLeft").addEventListener("click", () => {
-            objeto.rotation.y += THREE.Math.degToRad(10);
+            objeto.rotation.y += THREE.Math.degToRad(5);
         });
 
         document.querySelector("#rotateRight").addEventListener("click", () => {
-            objeto.rotation.y -= THREE.Math.degToRad(10);
+            objeto.rotation.y -= THREE.Math.degToRad(5);
         });
 
         /* MOVE Y */
@@ -183,20 +216,20 @@
 
         /* PITCH (X) */
         document.querySelector("#tiltForward").addEventListener("click", () => {
-            objeto.rotation.x += THREE.Math.degToRad(10);
+            objeto.rotation.x += THREE.Math.degToRad(5);
         });
 
         document.querySelector("#tiltBackward").addEventListener("click", () => {
-            objeto.rotation.x -= THREE.Math.degToRad(10);
+            objeto.rotation.x -= THREE.Math.degToRad(5);
         });
 
         /* ROLL (Z) — ARFAGEM REAL */
         document.querySelector("#rollRight").addEventListener("click", () => {
-            objeto.rotation.z += THREE.Math.degToRad(10);
+            objeto.rotation.z += THREE.Math.degToRad(5);
         });
 
         document.querySelector("#rollLeft").addEventListener("click", () => {
-            objeto.rotation.z -= THREE.Math.degToRad(10);
+            objeto.rotation.z -= THREE.Math.degToRad(5);
         });
 
         /* ZOOM DESKTOP (botões + e -) */
@@ -213,7 +246,7 @@
             modelo.setAttribute("scale", { x: scale, y: scale, z: scale });
         });
 
-        /* TROCAR MODELO PELO SELECT */
+
         document.querySelector("#modelSelect").addEventListener("change", (e) => {
             const newModelURL = e.target.value;
 
@@ -241,6 +274,8 @@
                     z: scaleFactor
                 });
             });
+
+
 
 
             // troca o GLB
