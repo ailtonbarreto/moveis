@@ -7,6 +7,7 @@
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
     <link rel="shortcut icon" href="vr-glasses.ico" type="image/x-icon">
     <script src="menu.js" defer></script>
+    <script src="hide.js" defer></script>
     <link rel="stylesheet" href="menu.css">
     <link rel="stylesheet" href="style.css">
     <title>VR Móveis</title>
@@ -86,6 +87,12 @@
     <div class="controls-zoom">
         <div class="btn" id="zoomIn">＋</div>
         <div class="btn" id="zoomOut">－</div>
+    </div>
+
+    <div class="controls-zoom">
+        <div class="material-symbols-outlined" id="ocultar">visibility_off</div>
+        <div class="material-symbols-outlined" id="mostrar" style="display: none;">visibility</div>
+
     </div>
 
 
@@ -274,8 +281,6 @@
                     z: scaleFactor
                 });
             });
-
-
 
 
             // troca o GLB

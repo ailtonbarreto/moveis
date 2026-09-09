@@ -94,6 +94,19 @@ select{
     cursor: pointer;
 }
 
+#ocultar, #mostrar {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 9999;
+    cursor: pointer;
+    color: white;
+}
+
 .btn {
     background: rgba(0, 0, 0, 0.6);
     color: white;
