@@ -1,28 +1,29 @@
 #menu {
+    display: none;
     position: fixed;
     top: 0;
-    width: 100vw;
+    width: 250px;
+    left: 4px;
     height: 100%;
-    background-color: #fff;
-    padding: 1rem 0;
-    display: flex;
+    background: #fff;
     flex-direction: column;
-    transition: left 0.3s ease;
-    z-index: 1000000;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    align-items: center;
+    text-align: center;
+    z-index: 100000;
 }
 
-.open {
-    display: block;
+#menu.open {
+    display: flex;
+}
 
+
+.open {
+    display: flex;
 }
 
 .close {
     display: none;
 }
-
-
-
 
 #open_menu {
     font-size: 1.9rem;
